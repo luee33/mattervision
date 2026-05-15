@@ -1,6 +1,7 @@
 import SwiftUI
 import AVFoundation
 import SceneKit
+import Combine
 
 // MARK: - App State
 
@@ -32,6 +33,7 @@ struct ContentView: View {
 // MARK: - Screen 1: Camera
 
 class CameraSessionManager: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
+    let objectWillChange = ObservableObjectPublisher()
     let session = AVCaptureSession()
     private let photoOutput = AVCapturePhotoOutput()
     var onCapture: (() -> Void)?
